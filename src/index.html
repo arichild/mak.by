@@ -1,7 +1,276 @@
 <!--#include file="inc-header.html"-->
 
 <div class="middle" id="middle">
-  <h2>middle</h2>
+  <div class="container">
+    <div class="page-wrapper">
+      <img src="./images/bg/bg-3.png" alt="alt" class="bg-1">
+
+      <div class="row">
+        <div class="col-xs-7">
+          <form action="#" class="mak-form-block">
+            <div class="mak-content">
+              <h2 class="h2">Приглашаем на День открытых дверей!</h2>
+
+              <p>
+                Визит на кухню ресторана <a href="#">Mak.by</a> — это уникальная возможность своими глазами увидеть, как готовятся любимые блюда в ресторане. Узнать о стандартах и контроле качества в Mak.by и проникнуться нашей атмосферой. И всё это — <span class="bold">абсолютно бесплатно.</span>
+              </p>
+            </div>
+
+            <div class="mak-form">
+              <div class="mak-form-txt">
+                <h2 class="h2">Ресторан, дата и время</h2>
+
+                <p>
+                  Визит на кухню ресторана Mak.by предусматривает <br> <span class="bold">до 5 человек</span> в группе одновременно. Продолжительность — 1 час. <br>
+                  В календаре вы увидите ближайшие возможные даты, исходя из укомплектованности групп.
+                </p>
+              </div>
+
+              <div class="mak-fields">
+                <div class="mak-field">
+                  <label for="town" class="mak-label">Ваш город <span>*</span></label>
+                  <select class="mak-select" name="town">
+                    <option disabled selected value="">Выберите город</option>
+                    <option value="1">г. Минск, пр. Независимости, 52-160 (ст.м. Якуба Колоса)</option>
+                    <option value="2">г. Минск, пр. Независимости, 52-160 (ст.м. Якуба Колоса)</option>
+                    <option value="3">Option 3</option>
+                    <option value="4">Option 4</option>
+                    <option value="5">Option 5</option>
+                    <option value="6">Option 6</option>
+                    <option value="7">Option 7</option>
+                  </select>
+                </div>
+
+                <div class="mak-field">
+                  <label for="restaurant" class="mak-label">Ресторан <span>*</span></label>
+                  <select class="mak-select" name="restaurant">
+                    <option disabled selected value="">Выберите ресторан</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                  </select>
+                </div>
+
+                <div class="mak-field">
+                  <label for="test" class="mak-label">Дата <span>*</span></label>
+
+                  <div class="ui-input-wrp">
+                    <input id="datetimepicker" class="ui-date" name="calendar" type="text" placeholder="Выберите дату" readonly>
+                    <img src="./images/icon/close-select.svg" alt="alt">
+                    <!-- <div class="popup-icon"></div> -->
+                  </div>
+
+                  <div class="mak-available">Свободных мест: нет</div>
+                </div>
+
+                <div class="mak-field">
+                  <div class="mak-time">10:30</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mak-form">
+              <div class="mak-form-txt">
+                <h2 class="h2">Количество участников</h2>
+
+                <p>
+                  Допускаются дети <span class="bold">от 7 до 15 лет</span> в сопровождении взрослого от 16 лет.
+                </p>
+              </div>
+
+              <div class="select-btn flex">
+                <div class="ui-select">
+                  <input autocomplete="off" type="radio" class="ui-radio" id="select1" name="select" value="1" data-value="1" checked="">
+                  <label for="select1">Взрослый</label>
+                </div>
+
+                <div class="ui-select">
+                  <input autocomplete="off" type="radio" class="ui-radio" id="select2" name="select" value="2" data-value="2">
+                  <label for="select2">Взрослый и ребенок</label>
+                </div>
+              </div>
+
+              <div class="mak-fields">
+                <div class="mak-field">
+                  <label for="adult" class="mak-label">Укажите количество взрослых <span>*</span></label>
+
+                  <select class="mak-select" name="adult">
+                    <option disabled selected value="">Выберите количество взрослых</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                  </select>
+                </div>
+
+                <div class="mak-field children">
+                  <label for="children" class="mak-label">Укажите количество детей <span>*</span></label>
+
+                  <select class="mak-select" name="children">
+                    <option disabled selected value="">Выберите количество детей</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="mak-form">
+              <h2 class="h2">Контактные данные</h2>
+
+              <div class="mak-fields">
+                <div class="mak-field">
+                  <label for="name" class="mak-label">Как вас зовут (ФИО) <span>*</span></label>
+
+                  <div class="input-container">
+                    <input type="text" class="ui-input label" name="name" id="name" placeholder="Иванов Иван Иванович">
+                    <button class="btn-clear"><img src="./images/icon/btn-clear.svg" alt="alt"></button>
+                  </div>
+                </div>
+                <div class="mak-field">
+                  <label for="email" class="mak-label">Электронная почта <span>*</span></label>
+
+                  <div class="input-container">
+                    <input type="text" class="ui-input label" name="email" id="email" placeholder="123@gmail.com">
+                    <button class="btn-clear"><img src="./images/icon/btn-clear.svg" alt="alt"></button>
+                  </div>
+                </div>
+                <div class="mak-field">
+                  <label for="phone" class="mak-label">Номер телефона <span>*</span></label>
+
+                  <div class="input-container">
+                    <input type="text" class="ui-input phone" name="phone" id="phone" placeholder="+375 (__)___-__-__">
+                    <button class="btn-clear"><img src="./images/icon/btn-clear.svg" alt="alt"></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ui-checkbox-container">
+                <input type="checkbox" name="checkbox" class="ui-checkbox">
+                <label for="checkbox">
+                  <span class="default-txt">
+                    Я соглашаюсь с <a href="#">правилами обработки персональных данных.</a>
+                  </span>
+                </label>
+              </div>
+
+              <div class="mak-btn">
+                <button class="ui-btn">Записаться</button>
+
+                <img src="./images/bg/bg-4.svg" alt="alt">
+              </div>
+            </div>
+          </form>
+
+          <script>
+            document.addEventListener("DOMContentLoaded",() => {
+              jQuery(document).ready(function($){
+                $(".mak-form-block").validate({
+                  errorElement: "span",
+
+                  invalidHandler: function() {
+                    setTimeout(function() {
+                      $('select.mak-select, input.ui-checkbox').trigger('refresh');
+                    }, 1)
+                  },
+
+                  rules: {
+                    name: {
+                      required: true,
+                      lettersonly: true,
+                    },
+                    email: {
+                      required: true,
+                      email: true,
+                    },
+                    phone: {
+                      required: true,
+                      phone: true,
+                    },
+                    town: {
+                      required: true,
+                    },
+                    restaurant: {
+                      required: true,
+                    },
+                    calendar: {
+                      required: true,
+                    },
+                    // time: {
+                    //   required: true,
+                    // },
+                    adult: {
+                      required: true,
+
+                      // required: function() {
+                      //   return true
+                      // },
+                    },
+                    children: {
+                      required: true,
+                    },
+                    checkbox: {
+                      required: true,
+                    }
+                  },
+
+                  errorPlacement: function (error, element) {
+                    if (element.hasClass('ui-checkbox-input')) {
+                      element.closest('.ui-checkbox').append(error);
+                    }
+                    if (element.hasClass('mak-select')) {
+                      element.closest('.jq-selectbox').after(error);
+                    }
+                    if (element.hasClass('ui-checkbox')) {
+                      element.closest('.ui-checkbox-container').append(error);
+                    }
+                    if (element.hasClass('ui-date')) {
+                      element.closest('.ui-input-wrp').after(error);
+                    }
+                    if (element.hasClass('ui-input')) {
+                      element.closest('.mak-field').append(error);
+                    }
+                  },
+
+                  highlight: function(element, errorClass, validClass) {
+                    $(element).addClass(errorClass).removeClass(validClass);
+                  },
+
+                  unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass(errorClass).addClass(validClass);
+                  },
+
+                  messages: {
+                    email: {
+                      email: "Введите корректный email",
+                    },
+
+                    // date: {
+                    //   required: 'Введите данные'
+                    // },
+
+                    customCheckbox: {
+                      required: "Пожалуйста подтвердите обработку персональных данных"
+                    }
+                  }
+                });
+              })
+            });
+          </script>
+        </div>
+
+        <div class="col-xs-5">
+          <div class="mak-flyer">
+            <div class="mak-flyer-img">
+              <img src="./images/burger-img.png" alt="alt">
+            </div>
+            <div class="mak-flyer-bottom">
+              <div class="mak-flyer-txt">бесплатно</div>
+            </div>
+
+            <img src="./images/bg/bg-2.png" alt="alt" class="bg">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!--#include file="inc-footer.html"-->

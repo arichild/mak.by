@@ -1,0 +1,115 @@
+.footer {
+  // height: 51px;
+  line-height: 51px;
+  font-size: 12px;
+  color: #fff;
+
+  @media(max-width: 1024.99px) {
+    background-color: #FFC836;
+  }
+
+  @media(max-width: 630.99px) {
+    padding-top: 15px;
+    padding-bottom: 20px;
+    line-height: 1;
+  }
+
+  .info {
+    color: #fff;
+    // margin-right: 96px;
+
+    @media(max-width: 630.99px) {
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+  }
+
+  &-content {
+    // padding-left: 108px;
+    // max-width: calc(796px + 108px);
+    max-width: 1360px;
+    margin: 0 auto;
+    background-color: #FFC836;
+    // justify-content: space-between;
+
+    &-info {
+      padding-left: 108px;
+      max-width: calc(796px + 108px);
+      justify-content: space-between;
+
+      @media(max-width: 1024.99px) {
+        padding-left: 16px;
+        padding-right: 16px;
+        max-width: 100%;
+      }
+    }
+
+
+    &-mob {
+      display: none;
+      flex-direction: column;
+    }
+
+    @media(max-width: 630.99px) {
+      display: none;
+
+      &-mob {
+        display: flex;
+      }
+    }
+  }
+
+  &-social {
+    align-items: center;
+    // margin-right: 155px;
+
+    @media(max-width: 630.99px) {
+      margin-bottom: 11px;
+    }
+
+    &-title {
+      margin-right: 11px;
+    }
+
+    &-links {
+      @media(max-width: 630.99px) {
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+
+    .sprite {
+      width: 12px;
+      height: 12px;
+      fill: #fff;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+
+      @media(max-width: 630.99px) {
+        width: 25px;
+        height: 25px;
+      }
+    }
+
+    a {
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
+      border: 1px solid #fff;
+      position: relative;
+      margin-right: 7px;
+
+      @media(max-width: 630.99px) {
+        width: 60px;
+        height: 60px;
+        margin-right: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
