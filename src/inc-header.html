@@ -15,9 +15,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- datetimepiccker -->
-  <link rel="stylesheet" type="text/css" href="/jquery.datetimepicker.css">
-
   <!-- jquery formstyler -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jQueryFormStyler/2.0.2/jquery.formstyler.min.css">
 
@@ -26,27 +23,28 @@
 <body>
 <!-- wrapper -->
 <div class="wrapper" id="wrapper">
-  <header class="header" id="header">
+  <header class="header-booking" id="header">
     <div class="container">
-      <div class="header-container">
-        <div class="header-content">
-          <div class="header-txt">
-            <p>Дни открытых дверей в Mak.by</p>
+      <div class="header-content">
+        <div class="header-txt">
+          <p>Дни открытых дверей в Mak.by</p>
 
-            <h2 class="h2">Хотите узнать секреты высокого качества и вкуса любимых блюд в Mak.by?</h2>
-          </div>
-
-          <div class="mak-flyer mob">
-            <div class="mak-flyer-img">
-              <img src="./images/burger-img.png" alt="alt">
-            </div>
-            <div class="mak-flyer-bottom">
-              <div class="mak-flyer-txt">бесплатно</div>
-            </div>
-          </div>
-
-          <a href="#" class="ui-btn">Записаться</a>
+          <h2 class="h2">Хотите узнать секреты высокого качества и вкуса любимых блюд в Mak.by?</h2>
         </div>
+
+        <div class="mak-flyer mob">
+          <div class="mak-flyer-img">
+            <picture>
+              <source media="(min-width:576.99px)" srcset="./images/px.png">
+              <img src="./images/burger-img.png" alt="alt">
+            </picture>
+          </div>
+          <div class="mak-flyer-bottom">
+            <div class="mak-flyer-txt">бесплатно</div>
+          </div>
+        </div>
+
+        <a href="#" class="ui-btn form-block">Записаться</a>
       </div>
     </div>
 

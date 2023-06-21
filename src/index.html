@@ -16,7 +16,7 @@
               </p>
             </div>
 
-            <div class="mak-form">
+            <div class="mak-form" id="form-block">
               <div class="mak-form-txt">
                 <h2 class="h2">Ресторан, дата и время</h2>
 
@@ -143,8 +143,8 @@
               </div>
 
               <div class="ui-checkbox-container">
-                <input type="checkbox" name="checkbox" class="ui-checkbox">
-                <label for="checkbox">
+                <input type="checkbox" id="checkbox1" name="checkbox" class="ui-checkbox">
+                <label for="checkbox1">
                   <span class="default-txt">
                     Я соглашаюсь с <a href="#">правилами обработки персональных данных.</a>
                   </span>
@@ -211,23 +211,6 @@
                     }
                   },
 
-                  errorPlacement: function (error, element) {
-                    if (element.hasClass('ui-checkbox-input')) {
-                      element.closest('.ui-checkbox').append(error);
-                    }
-                    if (element.hasClass('mak-select')) {
-                      element.closest('.jq-selectbox').after(error);
-                    }
-                    if (element.hasClass('ui-checkbox')) {
-                      element.closest('.ui-checkbox-container').append(error);
-                    }
-                    if (element.hasClass('ui-date')) {
-                      element.closest('.ui-input-wrp').after(error);
-                    }
-                    if (element.hasClass('ui-input')) {
-                      element.closest('.mak-field').append(error);
-                    }
-                  },
 
                   highlight: function(element, errorClass, validClass) {
                     $(element).addClass(errorClass).removeClass(validClass);
@@ -242,10 +225,6 @@
                       email: "Введите корректный email",
                     },
 
-                    // date: {
-                    //   required: 'Введите данные'
-                    // },
-
                     customCheckbox: {
                       required: "Пожалуйста подтвердите обработку персональных данных"
                     }
@@ -259,7 +238,10 @@
         <div class="col-xs-5">
           <div class="mak-flyer">
             <div class="mak-flyer-img">
-              <img src="./images/burger-img.png" alt="alt">
+              <picture>
+                <source media="(max-width:576.99px)" srcset="./images/px.png">
+                <img src="./images/burger-img.png" alt="alt">
+              </picture>
             </div>
             <div class="mak-flyer-bottom">
               <div class="mak-flyer-txt">бесплатно</div>

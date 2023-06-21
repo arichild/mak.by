@@ -1,8 +1,3 @@
-$(function() {
-  $('select.mak-select, input.custom-radio[type="radio"], input.ui-checkbox[type="checkbox"]').styler({
-  });
-});
-
 const D = document;
 
 const FARBA = {
@@ -56,6 +51,34 @@ const FARBA = {
   },
 };
 
+
+$(function() {
+  $('select.mak-select, input.custom-radio[type="radio"], input.ui-checkbox[type="checkbox"]').styler({
+  });
+});
+
+window.addEventListener('resize', function() {
+  if(document.querySelector('.ui-input-wrp')) {
+    const element = document.querySelector('.ui-input-wrp');
+    const widthElement = element.offsetWidth;
+    const calendar = document.querySelector('.xdsoft_datepicker')
+
+    calendar.style.width = widthElement + 'px'
+  }
+});
+
+if(document.querySelector('.ui-date')) {
+  const input = document.querySelector('.ui-date')
+
+  input.addEventListener('click', () => {
+    const element = document.querySelector('.ui-input-wrp');
+    const widthElement = element.offsetWidth;
+    const calendar = document.querySelector('.xdsoft_datepicker')
+
+    calendar.style.width = widthElement + 'px'
+  })
+}
+
 if(document.getElementById('phone')) {
   let phone = document.getElementById('phone')
 
@@ -101,6 +124,83 @@ jQuery.validator.addMethod("phone", function (value, element) {
 
 $.validator.messages.required = 'Пожалуйста, заполните это поле';
 
+$.validator.setDefaults({
+  errorPlacement: function (error, element) {
+    if (element.hasClass('ui-checkbox-input')) {
+      element.closest('.ui-checkbox').append(error);
+    }
+    if (element.hasClass('mak-select')) {
+      element.closest('.jq-selectbox').after(error);
+    }
+    if (element.hasClass('ui-checkbox')) {
+      element.closest('.ui-checkbox-container').append(error);
+    }
+    if (element.hasClass('ui-date')) {
+      element.closest('.ui-input-wrp').after(error);
+    }
+    if (element.hasClass('custom-radio')) {
+      element.closest('.ui-radio-list').closest('.mak-field').append(error);
+    }
+    if (element.hasClass('ui-textarea')) {
+      element.closest('.ui-textarea').after(error);
+    }
+    if (element.hasClass('ui-checkbox')) {
+      element.closest('.ui-checkbox-list').append(error);
+    }
+    if (element.hasClass('ui-input')) {
+      element.closest('.mak-field').append(error);
+    }
+  }
+});
+
+$('select.mak-select').on('change', function() {
+  setTimeout(function() {
+    $('select.mak-select').trigger('refresh');
+  }, 1)
+});
+
+$('input.custom-radio[type="radio"]').on('change', function(e) {
+  console.log(e.target.checked)
+  const parent = e.target.closest('.mak-field')
+  const textarea = parent.querySelector('textarea')
+  const allTextarea = document.querySelectorAll('.ui-radio-list textarea.another')
+
+  for(let i = 0; i < allTextarea.length; i++) {
+    allTextarea[i].classList.remove('active')
+  }
+
+  if(textarea) {
+    textarea.classList.remove('active');
+    if(e.target.dataset.another === 'another') {
+      textarea.classList.add('active')
+    }
+  }
+
+  $(".form-survey").validate();
+
+  setTimeout(function() {
+    $('input.custom-radio[type="radio"]').trigger('refresh');
+  }, 1)
+});
+
+$('input.ui-checkbox[type="checkbox"]').on('change', function(e) {
+  const parent = e.target.closest('.mak-field')
+
+  if(parent.querySelector('textarea')) {
+    const textarea = parent.querySelector('textarea')
+
+    if(e.target.dataset.another === 'another' && e.target.checked) {
+      textarea.classList.add('active')
+    } else {
+      textarea.classList.remove('active')
+    }
+  }
+
+  setTimeout(function() {
+    $('input.ui-checkbox[type="checkbox"]').trigger('refresh');
+  }, 1)
+});
+
 function checkInputValue(input) {
   const inputField = document.querySelectorAll(input);
 
@@ -126,7 +226,6 @@ function checkInputValue(input) {
 }
 
 $( document ).ready(function() {
-  // labelForInput('.ui-input.label')
   checkInputValue('.mak-field input')
 
   const radioBtn = document.querySelector('.select-btn')
@@ -147,6 +246,30 @@ $( document ).ready(function() {
     })
   }
 
+  const anchors = document.querySelectorAll('a.ui-btn')
+
+  function blockTo(className) {
+    for (let anchor of anchors) {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault()
+
+        let arr = e.target.classList;
+        let id = Array.from(arr).filter(word => word == className)
+
+        if (id.length) {
+          document.getElementById(id[0]).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          })
+        }
+      })
+    }
+  }
+
+  if (anchors.length) {
+    blockTo("form-block")
+  }
+
   const btnClear = document.querySelectorAll('.btn-clear')
 
   if(btnClear.length) {
@@ -164,71 +287,26 @@ $( document ).ready(function() {
     })
   }
 
-  $('select.mak-select').on('change', function() {
-    setTimeout(function() {
-      $('select.mak-select').trigger('refresh');
-    }, 1)
-  });
-
-  $('input.custom-radio[type="radio"]').on('change', function(e) {
-    const parent = e.target.closest('.mak-field')
-    const textarea = parent.querySelector('textarea')
-    const allTextarea = document.querySelectorAll('.ui-radio-list textarea.another')
-
-    for(let i = 0; i < allTextarea.length; i++) {
-      allTextarea[i].classList.remove('active')
-    }
-
-    if(textarea) {
-      textarea.classList.remove('active');
-      if(e.target.dataset.another === 'another') {
-        textarea.classList.add('active')
-      }
-    }
-
-    setTimeout(function() {
-      $('input.custom-radio[type="radio"]').trigger('refresh');
-    }, 1)
-  });
-
-  $('input.ui-checkbox[type="checkbox"]').on('change', function(e) {
-    const parent = e.target.closest('.mak-field')
-    const textarea = parent.querySelector('textarea')
-
-    if(textarea) {
-      if(e.target.dataset.another === 'another' && e.target.checked) {
-        textarea.classList.add('active')
-        console.log(e.target)
-      } else {
-        textarea.classList.remove('active')
-      }
-    }
-
-    setTimeout(function() {
-      $('input.ui-checkbox[type="checkbox"]').trigger('refresh');
-    }, 1)
-  });
-
-    // datetimepicker
-    FARBA.lazyLibraryLoad(
-      "https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js",
-      "https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css",
-      () => {
-        $(document).ready(function () {
-          $("#datetimepicker").datetimepicker({
-            // value:'12.03.2013',
-            format: "d.m.Y",
-            timepicker: false,
-            // opened: true,
-            closeOnDateSelect: true,
-            lang: "ru",
-            yearStart: 1940,
-            yearEnd: new Date().getFullYear(),
-            dayOfWeekStart: 1,
-          });
-
-          $.datetimepicker.setLocale("ru");
+  // datetimepicker
+  FARBA.lazyLibraryLoad(
+    "https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css",
+    () => {
+      $(document).ready(function () {
+        $("#datetimepicker").datetimepicker({
+          // value:'12.03.2013',
+          format: "d.m.Y",
+          timepicker: false,
+          // opened: true,
+          closeOnDateSelect: true,
+          lang: "ru",
+          yearStart: 1940,
+          yearEnd: new Date().getFullYear(),
+          dayOfWeekStart: 1,
         });
-      }
-    );
+
+        $.datetimepicker.setLocale("ru");
+      });
+    }
+  );
 });

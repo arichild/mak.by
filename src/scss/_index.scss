@@ -151,12 +151,20 @@ span.bold {
     line-height: 68px;
     background-color: #F7F7F7;
     border-radius: 5px;
+    border: 1px solid transparent;
     width: 100%;
     padding-left: 24px;
     font-size: 18px;
     cursor: pointer;
     color: #666666;
 
+    &:hover {
+      border-color: #264f36;
+    }
+
+    &.opened {
+      border: 1px solid #478a60;
+    }
 
     &.changed {
       color: #222222;
@@ -185,10 +193,14 @@ span.bold {
 
     &.mob {
       display: none;
-      max-width: 205px;
+      max-width: 250px;
       position: static;
       margin: 0 auto;
       margin-bottom: 24px;
+
+      @media(max-width: 350px) {
+        max-width: 205px;
+      }
     }
 
     @media(max-width: 1024.99px) {
@@ -282,6 +294,10 @@ span.bold {
       max-width: none;
 
       @media(max-width: 1024.99px) {
+        top: -50px;
+      }
+
+      @media(max-width: 576.99px) {
         display: none;
       }
     }
@@ -324,6 +340,7 @@ span.bold {
   label {
     position: relative;
     top: -2px;
+    cursor: pointer;
 
     &.fs-18 {
       font-size: 18px;
@@ -354,6 +371,7 @@ span.bold {
   border-radius: 2px;
   position: absolute;
   left: 0;
+  cursor: pointer;
 
   &.checked {
     background: #264F36;
@@ -414,6 +432,15 @@ span.bold {
   font-size: 18px;
   color: #666666;
   position: relative;
+  outline: none;
+
+  &:hover {
+    border: 1px solid #264f36;
+  }
+
+  &:focus {
+    border: 1px solid #478a60;
+  }
 
   @media(max-width: 1024.99px) {
     height: 54px;
@@ -562,6 +589,10 @@ span.bold {
   position: relative;
 
   @media(max-width: 1024.99px) {
+    margin-bottom: 120px;
+  }
+
+  @media(max-width: 576.99px) {
     margin-bottom: 64px;
   }
 
@@ -657,7 +688,6 @@ span.error {
   background: #fff;
   font-size: 18px;
   box-shadow: rgba(0, 0, 0, 0.09) 0px 9px 7px;
-  padding-left: 24px;
   left: 0;
 
 
@@ -675,6 +705,20 @@ span.error {
 
     &:last-child {
       margin-bottom: 0;
+    }
+  }
+}
+
+.jq-selectbox__dropdown ul {
+  li {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+
+    &:hover {
+      background-color: #264f36;
+      color: #fff;
     }
   }
 }
@@ -773,7 +817,7 @@ input[type="date"] {
 }
 
 .xdsoft_datetimepicker .xdsoft_label>.xdsoft_select.xdsoft_monthselect {
-  right: 27px !important;
+  right: 0 !important;
   padding: 0 8px !important;
   box-shadow: 0px 2px 10px rgb(0 0 0 / 15%) !important;
 }
@@ -822,7 +866,7 @@ input[type="date"] {
 }
 
 .xdsoft_datetimepicker .xdsoft_datepicker {
-  width: 200px !important;
+  // width: 200px !important;
   margin-left: 0 !important;
   padding: 0 16px !important;
 }
@@ -837,12 +881,39 @@ input[type="date"] {
 }
 
 .xdsoft_datetimepicker .xdsoft_month {
-  width: 110px !important;
-  text-align: start !important;
+  width: 50% !important;
+  text-align: center !important;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .xdsoft_datetimepicker .xdsoft_year {
-  width: 53px !important;
+  width: 50% !important;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.xdsoft_datetimepicker .xdsoft_label {
+  font-size: 16px;
+  padding-bottom: 10px;
+
+  @media(max-width: 1024.99px) {
+    font-size: 15px;
+  }
+}
+
+.xdsoft_datetimepicker .xdsoft_calendar td, .xdsoft_datetimepicker .xdsoft_calendar th {
+  font-size: 14px;
+
+  @media(max-width: 1024.99px) {
+    font-size: 13px;
+  }
+}
+
+.xdsoft_datetimepicker .xdsoft_label > .xdsoft_select.xdsoft_yearselect {
+  right: 30px;
 }
 
 .xdsoft_datetimepicker .xdsoft_year span {
@@ -941,8 +1012,16 @@ input.ui-date {
   width: 100%;
   padding-left: 24px;
   font-size: 18px;
-  border: none;
+  border: 1px solid transparent;
   outline: none;
+
+  &:hover {
+    border-color: #264f36;
+  }
+
+  &:focus {
+    border: 1px solid #478a60;
+  }
 
   &::placeholder {
     font-size: 18px;
@@ -1019,6 +1098,7 @@ input.ui-date {
       position: relative;
       top: -4px;
       font-size: 18px;
+      cursor: pointer;
 
       @media(max-width: 1024.99px) {
         font-size: 16px;
@@ -1036,6 +1116,15 @@ input.ui-date {
   font-family: "Inter Tight",sans-serif;
   font-size: 16px;
   resize: none;
+  outline: none;
+
+  &:hover {
+    border: 1px solid #264f36;
+  }
+
+  &:focus {
+    border: 1px solid #478a60;
+  }
 
   &.error {
     margin-bottom: 8px;
