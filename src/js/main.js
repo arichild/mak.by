@@ -51,9 +51,8 @@ const FARBA = {
   },
 };
 
-
 $(function() {
-  $('select.mak-select, input.custom-radio[type="radio"], input.ui-checkbox[type="checkbox"]').styler({
+  $('select.mak-select').styler({
   });
 });
 
@@ -80,32 +79,24 @@ if(document.querySelector('.ui-date')) {
 }
 
 if(document.getElementById('phone')) {
-  let phone = document.getElementById('phone')
+  let inpTel = document.querySelectorAll('.phone');
+  let mask;
 
-  let phoneMask = IMask(phone, {
-    mask: [
-      {
-        mask: '+{375} (00) 000 00 00',
-        startsWith: '375',
-        overwrite: true,
-        lazy: false,
-        placeholderChar: '_',
-      },
-      {
-        mask: '0000000000000',
-        startsWith: '',
-        country: 'unknown'
-      }
-    ],
-
-    dispatch: function (appended, dynamicMasked) {
-      var number = (dynamicMasked.value + appended).replace(/\D/g, '');
-
-      return dynamicMasked.compiledMasks.find(function (m) {
-        return number.indexOf(m.startsWith) === 0;
+  for(var i = 0; i < inpTel.length; i++) {
+    inpTel[i].addEventListener('focus', function(){
+      mask = IMask(this, {
+          mask: '+375 (00) 000-00-00',
+          overwrite: true,
+          lazy: false,
+          autofix: true
       });
-    }
-  })
+    })
+    inpTel[i].addEventListener('blur', function() {
+      if(this.value.match('_')){
+        mask.masked.reset()
+      }
+    })
+  };
 }
 
 jQuery.validator.addMethod("lettersonly", function(value, element) {
@@ -122,35 +113,32 @@ jQuery.validator.addMethod("phone", function (value, element) {
   }
 }, "Введите полный номер");
 
-$.validator.messages.required = 'Пожалуйста, заполните это поле';
-
 $.validator.setDefaults({
+ errorElement: "span",
+
   errorPlacement: function (error, element) {
-    if (element.hasClass('ui-checkbox-input')) {
+    if (element.closest('ui-checkbox')) {
       element.closest('.ui-checkbox').append(error);
     }
-    if (element.hasClass('mak-select')) {
-      element.closest('.jq-selectbox').after(error);
-    }
-    if (element.hasClass('ui-checkbox')) {
-      element.closest('.ui-checkbox-container').append(error);
-    }
-    if (element.hasClass('ui-date')) {
-      element.closest('.ui-input-wrp').after(error);
-    }
-    if (element.hasClass('custom-radio')) {
-      element.closest('.ui-radio-list').closest('.mak-field').append(error);
-    }
-    if (element.hasClass('ui-textarea')) {
-      element.closest('.ui-textarea').after(error);
-    }
-    if (element.hasClass('ui-checkbox')) {
-      element.closest('.ui-checkbox-list').append(error);
-    }
-    if (element.hasClass('ui-input')) {
+
+    if (element.closest('.mak-field')) {
       element.closest('.mak-field').append(error);
     }
   }
+});
+
+//дефолтные сообщения, предупреждения
+jQuery.extend(jQuery.validator.messages, {
+  required: "Пожалуйста, заполните это поле",
+  email: "Некорректный email адрес",
+  url: "Некорректный URL",
+  date: "Некорректный формат даты",
+  number: "Только цифры",
+  digits: "Это поле поддерживает только числа",
+  equalTo: "Поля не совпадают",
+  maxlength: jQuery.validator.format('Максимальная длина поля {0} символа(ов)'),
+  minlength: jQuery.validator.format('Минимальная длина поля {0} символа(ов)'),
+  require_from_group: jQuery.validator.format('Отметьте миниммум {0} из этих полей')
 });
 
 $('select.mak-select').on('change', function() {
@@ -159,8 +147,29 @@ $('select.mak-select').on('change', function() {
   }, 1)
 });
 
-$('input.custom-radio[type="radio"]').on('change', function(e) {
-  console.log(e.target.checked)
+// $('.mak-select[data-town="town"]').on('change', function() {
+//   unDisabledFields()
+// });
+
+// function unDisabledFields() {
+//   const selectRestaurant = document.querySelector('.mak-select[data-restaurant="restaurant"]')
+//   const selectCalendar = document.querySelector('.ui-date[data-calendar="calendar"]')
+
+//   selectRestaurant.disabled = false;
+//   selectCalendar.disabled = false;
+
+//   clearInputs(selectRestaurant, selectCalendar)
+// }
+
+// function clearInputs(selectRestaurant, selectCalendar) {
+//   selectRestaurant.value = ''
+//   selectCalendar.value = ''
+
+//   selectRestaurant.classList.remove('valid')
+//   selectCalendar.classList.remove('valid')
+// }
+
+$('input.custom-radio[type="radio"]').on('click', function(e) {
   const parent = e.target.closest('.mak-field')
   const textarea = parent.querySelector('textarea')
   const allTextarea = document.querySelectorAll('.ui-radio-list textarea.another')
@@ -175,30 +184,19 @@ $('input.custom-radio[type="radio"]').on('change', function(e) {
       textarea.classList.add('active')
     }
   }
-
-  $(".form-survey").validate();
-
-  setTimeout(function() {
-    $('input.custom-radio[type="radio"]').trigger('refresh');
-  }, 1)
 });
 
-$('input.ui-checkbox[type="checkbox"]').on('change', function(e) {
+
+$('input.ui-checkbox-input[type="checkbox"]').on('click', function(e) {
   const parent = e.target.closest('.mak-field')
 
   if(parent.querySelector('textarea')) {
     const textarea = parent.querySelector('textarea')
 
-    if(e.target.dataset.another === 'another' && e.target.checked) {
-      textarea.classList.add('active')
-    } else {
-      textarea.classList.remove('active')
+    if(e.target.dataset.another === 'another') {
+      textarea.classList.toggle('active')
     }
   }
-
-  setTimeout(function() {
-    $('input.ui-checkbox[type="checkbox"]').trigger('refresh');
-  }, 1)
 });
 
 function checkInputValue(input) {
@@ -246,6 +244,23 @@ $( document ).ready(function() {
     })
   }
 
+  const btnClear = document.querySelectorAll('.btn-clear')
+
+  if(btnClear.length) {
+    btnClear.forEach(item =>{
+      item.addEventListener('click', (e) => {
+        e.preventDefault()
+
+        const inputField = item.closest('.input-container').querySelector('.ui-input')
+
+        inputField.value = ''
+        inputField.classList.remove('valid')
+
+        item.classList.remove('active')
+      })
+    })
+  }
+
   const anchors = document.querySelectorAll('a.ui-btn')
 
   function blockTo(className) {
@@ -270,23 +285,6 @@ $( document ).ready(function() {
     blockTo("form-block")
   }
 
-  const btnClear = document.querySelectorAll('.btn-clear')
-
-  if(btnClear.length) {
-    btnClear.forEach(item =>{
-      item.addEventListener('click', (e) => {
-        e.preventDefault()
-
-        const inputField = item.closest('.input-container').querySelector('.ui-input')
-
-        inputField.value = ''
-        inputField.classList.remove('valid')
-
-        item.classList.remove('active')
-      })
-    })
-  }
-
   // datetimepicker
   FARBA.lazyLibraryLoad(
     "https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js",
@@ -297,6 +295,7 @@ $( document ).ready(function() {
           // value:'12.03.2013',
           format: "d.m.Y",
           timepicker: false,
+          scrollInput: false,
           // opened: true,
           closeOnDateSelect: true,
           lang: "ru",

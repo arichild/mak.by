@@ -29,7 +29,7 @@
               <div class="mak-fields">
                 <div class="mak-field">
                   <label for="town" class="mak-label">Ваш город <span>*</span></label>
-                  <select class="mak-select" name="town">
+                  <select class="mak-select" name="town" data-town="town">
                     <option disabled selected value="">Выберите город</option>
                     <option value="1">г. Минск, пр. Независимости, 52-160 (ст.м. Якуба Колоса)</option>
                     <option value="2">г. Минск, пр. Независимости, 52-160 (ст.м. Якуба Колоса)</option>
@@ -43,7 +43,7 @@
 
                 <div class="mak-field">
                   <label for="restaurant" class="mak-label">Ресторан <span>*</span></label>
-                  <select class="mak-select" name="restaurant">
+                  <select class="mak-select" name="restaurant" data-restaurant="restaurant">
                     <option disabled selected value="">Выберите ресторан</option>
                     <option value="1">Option 1</option>
                     <option value="2">Option 2</option>
@@ -54,7 +54,7 @@
                   <label for="test" class="mak-label">Дата <span>*</span></label>
 
                   <div class="ui-input-wrp">
-                    <input id="datetimepicker" class="ui-date" name="calendar" type="text" placeholder="Выберите дату" readonly>
+                    <input id="datetimepicker" class="ui-date" name="calendar" type="text" placeholder="Выберите дату" data-calendar="calendar" readonly>
                     <img src="./images/icon/close-select.svg" alt="alt">
                     <!-- <div class="popup-icon"></div> -->
                   </div>
@@ -136,15 +136,15 @@
                   <label for="phone" class="mak-label">Номер телефона <span>*</span></label>
 
                   <div class="input-container">
-                    <input type="text" class="ui-input phone" name="phone" id="phone" placeholder="+375 (__)___-__-__">
+                    <input type="text" class="ui-input phone" name="phone" id="phone" placeholder="+375 (__) ___-__-__">
                     <button class="btn-clear"><img src="./images/icon/btn-clear.svg" alt="alt"></button>
                   </div>
                 </div>
               </div>
 
-              <div class="ui-checkbox-container">
-                <input type="checkbox" id="checkbox1" name="checkbox" class="ui-checkbox">
-                <label for="checkbox1">
+              <div class="ui-checkbox">
+                <input autocomplete="off" type="checkbox" id="customCheckbox" class="ui-checkbox-input" name="checkbox">
+                <label for="customCheckbox" class="ui-checkbox-label">
                   <span class="default-txt">
                     Я соглашаюсь с <a href="#">правилами обработки персональных данных.</a>
                   </span>
@@ -193,15 +193,8 @@
                     calendar: {
                       required: true,
                     },
-                    // time: {
-                    //   required: true,
-                    // },
                     adult: {
                       required: true,
-
-                      // required: function() {
-                      //   return true
-                      // },
                     },
                     children: {
                       required: true,
@@ -209,15 +202,6 @@
                     checkbox: {
                       required: true,
                     }
-                  },
-
-
-                  highlight: function(element, errorClass, validClass) {
-                    $(element).addClass(errorClass).removeClass(validClass);
-                  },
-
-                  unhighlight: function(element, errorClass, validClass) {
-                    $(element).removeClass(errorClass).addClass(validClass);
                   },
 
                   messages: {
@@ -240,7 +224,8 @@
             <div class="mak-flyer-img">
               <picture>
                 <source media="(max-width:576.99px)" srcset="./images/px.png">
-                <img src="./images/burger-img.png" alt="alt">
+                <source media="(min-width:576.99px)" srcset="./images/sd.png">
+                <img src="./images/sd.png" alt="alt">
               </picture>
             </div>
             <div class="mak-flyer-bottom">

@@ -68,6 +68,8 @@
 
       @media(max-width: 576.99px) {
         font-size: 24px;
+        margin-bottom: 16px;
+        margin-top: 0;
       }
     }
   }
@@ -88,7 +90,7 @@
   }
 
   @media(max-width: 576.99px) {
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     position: relative;
   }
 
@@ -124,7 +126,7 @@
     &::before {
       content: '';
       bottom: 148px;
-      border-radius: 0 0 0 50px;
+      border-radius: 0 0 0 62px;
     }
   }
 }
