@@ -160,6 +160,19 @@
           </form>
 
           <script>
+            if (/iPad/.test(navigator.userAgent)) {
+              document.documentElement.classList.add('device_ipad');
+            }
+          </script>
+
+          <style>
+            .device_ipad .jq-selectbox__dropdown {
+              display: none !important;
+              visibility: hidden !important;
+            }
+          </style>
+
+          <script>
             document.addEventListener("DOMContentLoaded",() => {
               jQuery(document).ready(function($){
                 $(".mak-form-block").validate({
